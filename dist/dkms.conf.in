@@ -1,0 +1,7 @@
+PACKAGE_NAME="lbm_rtp_proxy"
+PACKAGE_VERSION="__VSN__"
+MAKE[0]="make -C ${kernel_source_dir} M=${dkms_tree}/${PACKAGE_NAME}/${PACKAGE_VERSION}/build LBM_RTP_PROXY_VERSION=\"__VSN__\""
+CLEAN="make -C ${kernel_source_dir} M=${dkms_tree}/${PACKAGE_NAME}/${PACKAGE_VERSION}/build clean"
+AUTOINSTALL=yes
+BUILT_MODULE_NAME[0]="lbm_rtp_proxy"
+DEST_MODULE_LOCATION[0]=/extra
