@@ -172,9 +172,7 @@ enum { LOOPBACK_ROUTE, OUTGOING_ROUTE, INCOMING_ROUTE, AMBIGIUOS_ROUTE, NO_ROUTE
 static inline int match_routes(struct iphdr *ip_header, struct udphdr *udp_header,
                                struct routing *rt) {
   if(rt->loopback) {
-#ifdef DEBUG
-    printk(BANNER "LOOPBACK_ROUTE\n");
-#endif
+    debug_printk(BANNER "LOOPBACK_ROUTE\n");
     return LOOPBACK_ROUTE;
   }
   else {
@@ -182,28 +180,20 @@ static inline int match_routes(struct iphdr *ip_header, struct udphdr *udp_heade
     int incoming_route_match = match_udp_packet(ip_header, udp_header, E_SRC_ADDR, E_SRC_PORT, __________, E_PRX_PORT);
     if(outgoing_route_match > 0 || incoming_route_match > 0) {
       if(outgoing_route_match > incoming_route_match) {
-#ifdef DEBUG
-        printk(BANNER "OUTGOING_ROUTE\n");
-#endif
+        debug_printk(BANNER "OUTGOING_ROUTE\n");
         return OUTGOING_ROUTE;
       }
       else if(incoming_route_match > outgoing_route_match) {
-#ifdef DEBUG
-#endif
-        printk(BANNER "INCOMING_ROUTE\n");
+        debug_printk(BANNER "INCOMING_ROUTE\n");
         return INCOMING_ROUTE;
       }
       else {
-#ifdef DEBUG
-#endif
-        printk(BANNER "AMBIGIUOS_ROUTE\n");
+        debug_printk(BANNER "AMBIGIUOS_ROUTE\n");
         return AMBIGIUOS_ROUTE;
       }
     }
     else {
-#ifdef DEBUG
-#endif
-      printk(BANNER "NO_ROUTE\n");
+      debug_printk(BANNER "NO_ROUTE\n");
       return NO_ROUTE;
     }
   }
