@@ -22,6 +22,8 @@
 
 #include "debug.h"
 
+#include <linux/version.h>
+
 ////////////////////////////////////////////////////////////////////////////////
 //
 // proc file read handling: output non-empty table entries
@@ -195,6 +197,7 @@ static ssize_t rtp_proxy_write(struct file *file, const char *user_buffer, size_
 //
 ////////////////////////////////////////////////////////////////////////////////
 
+#if LINUX_VERSION_CODE < KERNEL_VERSION(5, 5, 0)
 static const struct file_operations rtp_proxy_file_ops = {
   .owner = THIS_MODULE,
   .open = rtp_proxy_open,
@@ -203,6 +206,15 @@ static const struct file_operations rtp_proxy_file_ops = {
   .llseek = seq_lseek,
   .release = seq_release_private,
 };
+#else
+static const struct proc_ops rtp_proxy_file_ops = {
+  .proc_open = rtp_proxy_open,
+  .proc_write = rtp_proxy_write,
+  .proc_read = seq_read,
+  .proc_lseek = seq_lseek,
+  .proc_release = seq_release_private
+};
+#endif
 
 
 void proc_file_create(void) {
