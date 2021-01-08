@@ -84,8 +84,10 @@ static unsigned int generic_hook_func(void *priv,
                 if(state->hook == NF_IP_LOCAL_OUT) {
 #if LINUX_VERSION_CODE < KERNEL_VERSION(4, 13, 0)
                   int err = ip_route_me_harder(skb, RTN_UNSPEC);
-#else
+#elseif LINUX_VERSION_CODE < KERNEL_VERSION(5, 9, 9)
                   int err = ip_route_me_harder(state->net, skb, RTN_UNSPEC);
+#else
+                  int err = ip_route_me_harder(state->net, state->sk, skb, RTN_UNSPEC);
 #endif
                   if (err < 0) {
                     debug_printk(BANNER " ip_route_me_harder FAILED -> DROP\n");
