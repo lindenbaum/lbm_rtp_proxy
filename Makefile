@@ -1,5 +1,6 @@
 #
 # Copyright (C) 2015  Lindenbaum GmbH
+# Copyright (C) 2021  vier GmbH
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,7 +19,6 @@
 KSRC ?= /lib/modules/$(shell uname -r)/build
 KBUILD := $(KSRC)
 
-LBM_RTP_PROXY_VERSION ?= $(shell git describe --tags --long --first-parent 2> /dev/null | cut -d- -f1,2)
 ifeq ($(LBM_RTP_PROXY_VERSION),)
   LBM_RTP_PROXY_VERSION := 0.0.0-0
 endif

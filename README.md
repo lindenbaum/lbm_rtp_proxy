@@ -3,6 +3,18 @@ lbm_rtp_proxy
 
 A kernel module proxying/relaying RTP/RTCP traffic.
 
+Attention Developers
+--------------------
+
+Always **adapt the version** after hacking on this project.
+
+* Update the `LBM_RTP_PROXY_VERSION` in the [Makefile](./Makefile)
+* Update the version in the [RPM build .spec file](./dist/lbm_rtp_proxy.spec)
+* Create a git tag for the version, this is important because the source
+  archive is defined in terms of the version, i.e.
+  `https://github.com/lindenbaum/lbm_rtp_proxy/archive/%{version}.tar.gz`
+
+
 Netfilter IP Hooks
 ------------------
 
