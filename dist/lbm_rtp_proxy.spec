@@ -1,6 +1,11 @@
 Name:		 lbm_rtp_proxy
-Version:	 %{lbm_rtp_proxy_version}
-Release:	 %{lbm_rtp_proxy_release}
+
+####################################
+# Specify the current version here:
+Version:	 1.0.2
+Release:	 1
+####################################
+
 Summary:	 Lindenbaum RTP proxy/relay kernel module
 Group:		 System Environment/Daemons
 BuildArch:	 noarch
@@ -17,6 +22,7 @@ Requires(preun): dkms
 A kernel module to proxy/relay and route RTP/RTCP traffic.
 
 %prep
+export LBM_RTP_PROXY_VERSION=%{version}-%{release}
 %setup -q
 
 %install
