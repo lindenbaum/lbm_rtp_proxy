@@ -20,7 +20,7 @@ KSRC ?= /lib/modules/$(shell uname -r)/build
 KBUILD := $(KSRC)
 
 ifeq ($(LBM_RTP_PROXY_VERSION),)
-  LBM_RTP_PROXY_VERSION := 0.0.0-0
+  LBM_RTP_PROXY_VERSION := 1.0.3-1
 endif
 
 ifdef DEBUG
