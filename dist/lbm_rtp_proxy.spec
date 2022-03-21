@@ -2,7 +2,7 @@ Name:		 lbm_rtp_proxy
 
 ####################################
 # Specify the current version here:
-Version:	 1.0.3
+Version:	 1.0.4
 Release:	 1
 ####################################
 
